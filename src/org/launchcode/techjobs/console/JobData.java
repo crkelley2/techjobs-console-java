@@ -10,6 +10,7 @@ import java.io.Reader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by LaunchCode
@@ -76,6 +77,9 @@ public class JobData {
 
             String aValue = row.get(column);
 
+            aValue = aValue.toLowerCase();
+            value = value.toLowerCase();
+
             if (aValue.contains(value)) {
                 jobs.add(row);
             }
@@ -84,9 +88,42 @@ public class JobData {
         return jobs;
     }
 
-    /**
-     * Read in data from a CSV file and store it in a list
-     */
+    public static ArrayList<HashMap<String, String>> findByValue(String value) {
+
+        // load data, if not already loaded
+        loadData();
+
+        ArrayList<HashMap<String, String>> jobs = new ArrayList<>();
+
+        for (HashMap<String, String> row : allJobs) {
+
+            for (Map.Entry<String, String> column : row.entrySet()) {
+                String name = column.getValue();
+                String employer = column.getValue();
+                String location = column.getValue();
+                String position = column.getValue();
+                String competency = column.getValue();
+
+                name = name.toLowerCase();
+                employer = employer.toLowerCase();
+                location = location.toLowerCase();
+                position = position.toLowerCase();
+                competency = competency.toLowerCase();
+
+                value = value.toLowerCase();
+
+                if (name.contains(value) || employer.contains(value) ||
+                        location.contains(value) || position.contains(value) ||
+                        competency.contains(value)) {
+                    jobs.add(row);
+                }
+            }
+        }
+        return jobs;
+    }
+        /**
+         * Read in data from a CSV file and store it in a list
+         */
     private static void loadData() {
 
         // Only load data once
