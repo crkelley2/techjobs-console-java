@@ -116,6 +116,7 @@ public class JobData {
                         location.contains(value) || position.contains(value) ||
                         competency.contains(value)) {
                     jobs.add(row);
+                    break;
                 }
             }
         }
