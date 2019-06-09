@@ -98,23 +98,13 @@ public class JobData {
         for (HashMap<String, String> row : allJobs) {
 
             for (Map.Entry<String, String> column : row.entrySet()) {
-                String name = column.getValue();
-                String employer = column.getValue();
-                String location = column.getValue();
-                String position = column.getValue();
-                String competency = column.getValue();
 
-                name = name.toLowerCase();
-                employer = employer.toLowerCase();
-                location = location.toLowerCase();
-                position = position.toLowerCase();
-                competency = competency.toLowerCase();
+                String aValue = column.getValue();
 
+                aValue = aValue.toLowerCase();
                 value = value.toLowerCase();
 
-                if (name.contains(value) || employer.contains(value) ||
-                        location.contains(value) || position.contains(value) ||
-                        competency.contains(value)) {
+                if (aValue.contains(value)) {
                     jobs.add(row);
                     break;
                 }
